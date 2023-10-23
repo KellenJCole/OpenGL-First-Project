@@ -28,5 +28,11 @@ int main() {
 
 	glViewport(0, 0, 800, 600); // Specifies the rendering rectangle: Parameters (left x-coordinate, bottom y-coordinate, width, height)
 
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback); // Tell our window to call framebuffer_size_callback whenever it is resized
+
 	return 0;
+}
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) { // When user resizes window, must adjust viewport as well. Use callback function on window when resized
+	glViewport(0, 0, width, height);
 }
