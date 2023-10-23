@@ -20,5 +20,13 @@ int main() {
 	}
 	glfwMakeContextCurrent(window); // Each thread can only have a single current context at a time
 
+	// GLAD manages function pointers for OpenGL - Finding OpenGL functions is up to the developer
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) { // gladLoadGLLoader is a function responsible for loading OpenGL function pointers for your system
+		std::cout << "Failed to initialize GLAD\n";
+		return -1;
+	}
+
+	glViewport(0, 0, 800, 600); // Specifies the rendering rectangle: Parameters (left x-coordinate, bottom y-coordinate, width, height)
+
 	return 0;
 }
