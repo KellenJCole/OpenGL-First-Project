@@ -30,6 +30,12 @@ int main() {
 
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback); // Tell our window to call framebuffer_size_callback whenever it is resized
 
+	while (!glfwWindowShouldClose(window)) { // render loop; like game loops used in SFML
+		glfwSwapBuffers(window); // OpenGL uses double buffers to prevent artifacting. Buffers draw pixel by pixel to the screen and we don't want the user to see this, so we draw to an invisible buffer that is switched to upon completion.
+		glfwPollEvents(); // like processEvents() in SFML
+	}
+
+	glfwTerminate(); // If we've made it past the rendering loop, it's time to say goodbye.
 	return 0;
 }
 
