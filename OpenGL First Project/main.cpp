@@ -4,6 +4,8 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height); // Add function prototype
+
 int main() {
 
 	glfwInit(); // Initializes GLFW library. Must be done before using most GLFW functions. Returns GL_TRUE if successful, and GL_FALSE if not.
