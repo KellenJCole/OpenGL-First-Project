@@ -34,7 +34,15 @@ int main() {
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback); // Tell our window to call framebuffer_size_callback whenever it is resized
 
 	while (!glfwWindowShouldClose(window)) { // render loop; like game loops used in SFML
+		// input
 		processInput(window);
+
+		// rendering commands here
+
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // rgba clear color - state-setting function
+		glClear(GL_COLOR_BUFFER_BIT); // state-using function
+
+		// check and call events and swap the buffers
 		glfwSwapBuffers(window); // OpenGL uses double buffers to prevent artifacting. Buffers draw pixel by pixel to the screen and we don't want the user to see this, so we draw to an invisible buffer that is switched to upon completion.
 		glfwPollEvents(); // like processEvents() in SFML
 	}
@@ -43,9 +51,13 @@ int main() {
 	return 0;
 }
 
+// **************************************************
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) { // When user resizes window, must adjust viewport as well. Use callback function on window when resized
 	glViewport(0, 0, width, height);
 }
+
+// **************************************************
 
 void processInput(GLFWwindow* window) { // Input control utilizing GLFW
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) // If key is pressed, returns GLFW_PRESS. If not, returns GLFW_RELEASE
