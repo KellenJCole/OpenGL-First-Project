@@ -52,6 +52,7 @@ int main() {
 	unsigned int VBO; // Vertex buffer object
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO); // Bind newly created buffer to the GL_ARRAY_BUFFER target
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // mode(target buffer object), size(in bytes of data), data, usage
 
 	while (!glfwWindowShouldClose(window)) { // render loop; like game loops used in SFML
 		// input
