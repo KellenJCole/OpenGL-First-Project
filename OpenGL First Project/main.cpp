@@ -67,6 +67,15 @@ int main() {
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL); // Attach shader source code to shader object
 	glCompileShader(vertexShader);
 
+	int success;
+	char infoLog[512]; // Store error messages
+	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success); // Checking for compile time errors
+
+	if (!success) { // if shader failed to compile
+		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << "\n";
+	}
+
 	while (!glfwWindowShouldClose(window)) { // render loop; like game loops used in SFML
 		// input
 		processInput(window);
