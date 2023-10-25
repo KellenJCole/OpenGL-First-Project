@@ -61,6 +61,12 @@ int main() {
 	glBindBuffer(GL_ARRAY_BUFFER, VBO); // Bind newly created buffer to the GL_ARRAY_BUFFER target
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // mode(target buffer object), size(in bytes of data), data, usage
 
+	unsigned int vertexShader;
+	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+
+	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL); // Attach shader source code to shader object
+	glCompileShader(vertexShader);
+
 	while (!glfwWindowShouldClose(window)) { // render loop; like game loops used in SFML
 		// input
 		processInput(window);
