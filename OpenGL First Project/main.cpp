@@ -7,6 +7,22 @@
 void framebuffer_size_callback(GLFWwindow* window, int width, int height); // Add function prototype
 void processInput(GLFWwindow* window);
 
+/*
+In modern OpenGL we are required to define at least a vertex and fragment shader of our own (no defaults)
+*/
+
+// OpenGL only processes 3D coordinates when they are in the range -1.0 to 1.0 (normalized device coordinates) on all three axes
+/*
+X: Right
+Y: Up
+Z: Depth
+*/
+float vertices[] = {
+	-0.5f, -0.5f, 0.0f,
+	 0.5f, -0.5f, 0.0f,
+	 0.0f,  0.5f, 0.0f
+};
+
 int main() {
 
 	glfwInit(); // Initializes GLFW library. Must be done before using most GLFW functions. Returns GL_TRUE if successful, and GL_FALSE if not.
@@ -32,6 +48,10 @@ int main() {
 	glViewport(0, 0, 800, 600); // Specifies the rendering rectangle: Parameters (left x-coordinate, bottom y-coordinate, width, height)
 
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback); // Tell our window to call framebuffer_size_callback whenever it is resized
+
+	unsigned int VBO; // Vertex buffer object
+	glGenBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO); // Bind newly created buffer to the GL_ARRAY_BUFFER target
 
 	while (!glfwWindowShouldClose(window)) { // render loop; like game loops used in SFML
 		// input
